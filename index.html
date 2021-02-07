@@ -10,48 +10,41 @@
 <form action="php.php" methode="get">
   <div class="box">
     <ul>
-       <li>
-          <input type="radio" name="page" value='page1' id="active1" checked>
-				  <label for="active1">Page 1 - (Métro) </label>
-		     <div for="active1">
+           <li>
+                <input type="radio" name="page" value='page1' id="active1" checked>
+        <label for="active1">GPS - DIJKSTRA</label>
+             <div for="active1">
             <fieldset>
-            <legend>Page 1</legend>
-            <div id="ligneCalcul" style="clear:both">
-                    Entrez la longitude : <input type="text" name="longitude1" placeholder="lontitude"><br /><br />
-                    Entrez la latitude : <input type="text" name="latitude1" placeholder="latitude"><br /><br />
-                  
-                Votre station :
-                    <select name=Station class=form-control>
 
-                      <option value="DUROC">DUROC</option>
-                      <option value="Vaneau">Vaneau</option>
-                      <option value="Sevres">Sevres</option>
-                      <option value="Mabillon">Mabillon</option>
-                      <option value="Odeon">Odeon</option>
-                      <option value="Cite">Cite</option>
-                      <option value="Chatelet-Les-Halles">Chatelet-Les Halles</option>
-                      <option value="LOUVRE - RIVOLI">LOUVRE - RIVOLI</option>
-                      <option value="Palais-Royal">Palais-Royal</option>
-                      <option value="Tuileries">Tuileries</option>
-                      <option value="Concorde">Concorde</option>
-                      <option value="ASSEMBLEE NATIONALE">ASSEMBLEE NATIONALE</option>
-                      <option value="SOLFERINO- BELLECHASSE">SOLFERINO- BELLECHASSE</option>
-                      <option value="Rue-du-Bac">Rue du Bac</option>
-                      <option value="Varenne">Varenne</option>
-                      <option value="INVALIDE">INVALIDE</option>
-                      <option value="SAINT-FRANCOIS-XAVIER">SAINT-FRANCOIS-XAVIER</option>
-
-                    </select>
-                  </br>
-                  </br>
-              <input type="submit" value="Send">
-              <br>
-              <br>
-              <img src="./img/plot1.png" width="1080" height="720">
-				     </div>
-            </fieldset>
-          </div>
-          </li>
+                     <legend>Insérez vos coordonées :</legend>
+                     Entrez la longitude : <input type="text" name="longitude1" placeholder="longitude"> <br><br>
+                     Entrez la latitude : <input type="text" name="latitude1" placeholder="latitude"> <br><br>
+                     Votre station : 
+           <select name="select_at" id="active1">
+                 <option value ="DUROC">DUROC</option>
+                 <option value ="Vaneau">Vaneau</option>
+               <option value="Sevres">Sevres</option>
+                 <option value="Mabillon">Mabillon</option>
+                 <option value ="Odeon">Odeon</option>
+                 <option value ="Cite">Cite</option>
+               <option value="Chatelet-Les-Halles">Chatelet-Les Halles</option>
+                 <option value="LOUVRE-RIVOLI">LOUVRE - RIVOLI</option>
+                 <option value ="Palais-Royal">Palais-Royal</option>
+                 <option value ="Tuileries">Tuileries</option>
+               <option value="Concorde">Concorde</option>
+                 <option value="ASSEMBLEE-NATIONALE">ASSEMBLEE NATIONALE</option>
+                 <option value ="SOLFERINO-BELLECHASSE">SOLFERINO- BELLECHASSE</option>
+                 <option value ="Rue-du-Bac">Rue du Bac</option>
+               <option value="Varenne">Varenne</option>
+                 <option value="INVALIDE">INVALIDE</option>
+             <option value="SAINT-FRANCOIS-XAVIER">SAINT-FRANCOIS-XAVIER</option>
+             </select>
+             <br> <br>
+             <input type="submit" value="ok">
+             <img src="./img/plot1.png" />
+             </div>
+             </fieldset>
+           </li>
            <!-- Page 2 -->
           <li>
           <input type="radio" name="page" value='page2' id="active2">
@@ -59,7 +52,7 @@
           <div for="active2">
           <fieldset>
           <legend>Page 2</legend>
-            Entrez la longitude : <input type="text" name="longitude2" placeholder="lontitude"> <br><br>
+            Entrez la longitude : <input type="text" name="longitude2" placeholder="longitude"> <br><br>
             Entrez la latitude : <input type="text" name="latitude2" placeholder="latitude"> <br><br>
             Entrez le Rayon : <input type="text" name="rayon1" placeholder="Rayon (en m)"> <br><br>
           <input type="submit" value="Send">
@@ -75,7 +68,7 @@
           <div for="active3">
           <fieldset>
           <legend>Page 3</legend>
-            Entrez la longitude : <input type="text" name="longitude3" placeholder="lontitude"> <br><br>
+            Entrez la longitude : <input type="text" name="longitude3" placeholder="longitude"> <br><br>
             Entrez la latitude : <input type="text" name="latitude3" placeholder="latitude"> <br><br>
             Entrez le Rayon : <input type="text" name="rayon2" placeholder="Rayon (en m)"> <br><br>
           <input type="submit" value="Send">

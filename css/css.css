@@ -1,13 +1,11 @@
 
 <style>
         *{
-            margin:0;
             padding:0;
         }
         .box{
             width:50vw;
             height:50vh;
-            margin:0 auto;
         }
         ul,li{
             list-style: none;

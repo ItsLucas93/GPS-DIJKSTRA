@@ -324,6 +324,7 @@ def plot1(longitude, latitude, sap, all_station, sortie):
                       "paleturquoise"]
     # https://matplotlib.org/3.1.0/gallery/color/named_colors.html
     plt.figure(figsize=(13, 11))
+    plt.title(chemin)
     x = long
     y = lat
     nom = station_data
@@ -342,7 +343,7 @@ def plot1(longitude, latitude, sap, all_station, sortie):
     plt.plot(longitude_station, latitude_station, label='Itinéraire', c='white', marker="o", markersize=8)
     plt.legend(loc='upper right')
     plt.savefig("./img/plot1.png")
-    plt.show()
+    # plt.show()
 
 
 def nb_autour(longitude, latitude, d1, rayon):
@@ -374,25 +375,25 @@ def plot2(longitude, latitude, d1, rayon):
     rayon1 = rayon / 100000
     nb = nb_autour(longitude, latitude, d1, rayon)
     v1, v2, v3 = 0, 0, 0
-    fig = plt.figure(figsize=(16, 16))
+    fig = plt.figure(figsize=(13, 13))
     ax1 = fig.add_subplot(221)
     station = list(set([s[2] for s in d1]))
     for data in d1:
         if v1 == 0 and data[2] == station[0]:
             v1 += 1
-            ax1.scatter(data[1][0], data[1][1], c='r', marker='o', label='vaneau')
+            ax1.scatter(data[1][0], data[1][1], c='r', marker='o', label='Vaneau')
         elif v1 != 0 and data[2] == station[0]:
             ax1.scatter(data[1][0], data[1][1], c='r', marker='o')
 
         elif v2 == 0 and data[2] == station[1]:
             v2 += 1
-            ax1.scatter(data[1][0], data[1][1], c='b', marker='o', label='sevre')
+            ax1.scatter(data[1][0], data[1][1], c='b', marker='o', label='Sevre')
         elif v2 != 0 and data[2] == station[1]:
             ax1.scatter(data[1][0], data[1][1], c='b', marker='o')
 
         elif v3 == 0 and data[2] == station[2]:
             v3 += 1
-            ax1.scatter(data[1][0], data[1][1], c='g', marker='o', label='duroc')
+            ax1.scatter(data[1][0], data[1][1], c='g', marker='o', label='Duroc')
         elif v3 != 0 and data[2] == station[2]:
             ax1.scatter(data[1][0], data[1][1], c='g', marker='o')
 
@@ -414,25 +415,25 @@ def plot3(longitude, latitude, d1, rayon):
     rayon1 = rayon / 100000
     nb = nb_autour(longitude, latitude, d1, rayon)
     v1, v2, v3 = 0, 0, 0
-    fig = plt.figure(figsize=(15, 15))
+    fig = plt.figure(figsize=(17, 17))
     ax1 = fig.add_subplot(221)
     station = list(set([s[2] for s in d1]))
     for data in d1:
         if v1 == 0 and data[2] == station[0]:
             v1 += 1
-            ax1.scatter(data[1][0], data[1][1], c='r', marker='o', label='vaneau')
+            ax1.scatter(data[1][0], data[1][1], c='r', marker='o', label='Vaneau')
         elif v1 != 0 and data[2] == station[0]:
             ax1.scatter(data[1][0], data[1][1], c='r', marker='o')
 
         elif v2 == 0 and data[2] == station[1]:
             v2 += 1
-            ax1.scatter(data[1][0], data[1][1], c='b', marker='o', label='sevre')
+            ax1.scatter(data[1][0], data[1][1], c='b', marker='o', label='Sevre')
         elif v2 != 0 and data[2] == station[1]:
             ax1.scatter(data[1][0], data[1][1], c='b', marker='o')
 
         elif v3 == 0 and data[2] == station[2]:
             v3 += 1
-            ax1.scatter(data[1][0], data[1][1], c='g', marker='o', label='duroc')
+            ax1.scatter(data[1][0], data[1][1], c='g', marker='o', label='Duroc')
         elif v3 != 0 and data[2] == station[2]:
             ax1.scatter(data[1][0], data[1][1], c='g', marker='o')
 
