@@ -3,3 +3,4 @@ venv
 py/__pycache__/data.cpython-38.pyc
 py/__pycache__/data.cpython-39.pyc
 py/__pycache__/page1.cpython-38.pyc
+.DS_Store
