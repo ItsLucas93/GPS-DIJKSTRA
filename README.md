@@ -37,3 +37,7 @@ git clone https://github.com/ItsLucas93/GPS-DIJKSTRA
 * Apache est-il bien lancé ? 
 * Refresh la page, nettoyer le cache (image)
 * Python est-il bien installé ? (added to PATH ?)
+
+## Notes :
+
+Documents (sujet, schémas) présents dans [/ressources](https://github.com/ItsLucas93/GPS-DIJKSTRA/tree/master/ressources)
