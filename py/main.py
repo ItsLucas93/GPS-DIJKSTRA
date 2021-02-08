@@ -16,6 +16,42 @@ plt.rcParams['axes.facecolor'] = 'grey'
 
 # ------------ KPP ----------------
 
+def RADIANS(x):
+    return x * math.pi / 180.
+
+
+def distance_entre_deux_Points_GPS(long_A, lat_A, long_B, lat_B):
+    return round((1000 * R_terre * math.acos(
+        math.sin(RADIANS(long_B)) * math.sin(RADIANS(long_A)) + math.cos(RADIANS(long_B)) * math.cos(
+            RADIANS(long_A)) * math.cos(RADIANS(lat_A - lat_B)))))
+
+
+def eleve_distance(all_eleve, all_station):
+    resultat = ['distance en m']
+    long_A = [l[1][1] for l in all_eleve]
+    lat_A = [l[1][0] for l in all_eleve]
+    long_B = [s[2][1] for s in all_station]
+    lat_B = [s[2][0] for s in all_station]
+    for eleve in range(len(all_eleve)):
+        for station in range(len(all_station)):
+            if all_eleve[eleve][2] == all_station[station][0]:
+                resultat.append(
+                    distance_entre_deux_Points_GPS(long_A[eleve], lat_A[eleve], long_B[station], lat_B[station]))
+    return resultat
+
+
+def insert_distance_station(data, csv_file):
+    num = 0
+    with open(csv_file) as csvfile:
+        rows = [row for row in csv.reader(csvfile)]
+        with open(csv_file, 'w', encoding='utf-8', newline='') as f:
+            f.truncate()
+            writer = csv.writer(f)
+            for row in rows:
+                row.append(data[num])
+                writer.writerow(row)
+                num += 1
+
 def kpp(trainData, testData, labels, k):
     distances_voisins = []
     for index, sample in enumerate(trainData):
@@ -100,49 +136,15 @@ def dessiner(base, echantilon=[]):
     plt.show()
 
 
-def Insert_echantilon(nllg, nom_csv):
+def Insert_echantilon(nllg, csv_file):
     nllgcopy = [[n[0], n[1][0], n[1][1], n[2]] for n in nllg]
-    with open(nom_csv, 'a', encoding='utf-8', newline='') as f:
+    with open(csv_file, 'a', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         for data in nllgcopy:
             writer.writerow(data)
 
 
-def RADIANS(x):
-    return x * math.pi / 180.
 
-
-def distance_entre_deux_Points_GPS(long_A, lat_A, long_B, lat_B):
-    return round((1000 * R_terre * math.acos(
-        math.sin(RADIANS(long_B)) * math.sin(RADIANS(long_A)) + math.cos(RADIANS(long_B)) * math.cos(
-            RADIANS(long_A)) * math.cos(RADIANS(lat_A - lat_B)))))
-
-
-def eleve_distance(all_eleve, all_station):
-    resultat = ['distance en m']
-    long_A = [l[1][1] for l in all_eleve]
-    lat_A = [l[1][0] for l in all_eleve]
-    long_B = [s[2][1] for s in all_station]
-    lat_B = [s[2][0] for s in all_station]
-    for eleve in range(len(all_eleve)):
-        for station in range(len(all_station)):
-            if all_eleve[eleve][2] == all_station[station][0]:
-                resultat.append(
-                    distance_entre_deux_Points_GPS(long_A[eleve], lat_A[eleve], long_B[station], lat_B[station]))
-    return resultat
-
-
-def insert_distance_station(data, nom_csv):
-    num = 0
-    with open(nom_csv) as csvfile:
-        rows = [row for row in csv.reader(csvfile)]
-        with open(nom_csv, 'w', encoding='utf-8', newline='') as f:
-            f.truncate()
-            writer = csv.writer(f)
-            for row in rows:
-                row.append(data[num])
-                writer.writerow(row)
-                num += 1
 
 # ------------- Métro --------------
 
@@ -156,7 +158,7 @@ class trajet():
         self.all_station_solo = [base[num][0] for num in range(len(base))]
         self.base = base
 
-    def graph_construit(self):
+    def construction_graph_matrice(self):
         graph = {}
         for x in self.cart:
             for i in range(len(x)):
@@ -178,7 +180,7 @@ class trajet():
                         graph[x[i]] = [x[i - 1]]
         return graph
 
-    def graph_construit_2(self):
+    def construction_graph_dict(self):
         graph = {}
         for x in self.cart:
             for i in range(len(x)):
@@ -202,7 +204,7 @@ class trajet():
         return graph
 
     def matrice(self):
-        graph = self.graph_construit()
+        graph = self.construction_graph_matrice()
         matrice = [[] for i in range(len(self.all_station))]
         for num in range(len(self.all_station)):
             for nume in range(len(self.all_station)):
@@ -244,7 +246,7 @@ class trajet():
         return resultat.pop()
 
     def dijkstra(self, s):
-        G = self.graph_construit_2()
+        G = self.construction_graph_dict()
         inf = sum(sum(G[sommet][i] for i in G[sommet]) for sommet in G) + 1
         global s_explore
         global s_a_explorer
@@ -287,7 +289,7 @@ class trajet():
 
     def matrice_distance(self):
         station_position = self.distance_entre_station()
-        graph = self.graph_construit()
+        graph = self.construction_graph_matrice()
         matrice_distance = [[] for i in range(len(self.all_station))]
         for num in range(len(self.all_station)):
             for nume in range(len(self.all_station)):
@@ -532,7 +534,7 @@ if __name__ == "__main__":
     all_station = [ligne10, ligne4, ligne1, ligne12, ligne8, ligne13]
     dde = trajet(all_station, sap)
     # dde.matrice_distance()
-    # print(dde.graph_construit_2())
+    # print(dde.construction_graph_dict())
     chemin = dde.entree_sortie('DUROC', 'SOLFERINO-BELLECHASSE')
 
     # ---------------------- PHP ---------------------
